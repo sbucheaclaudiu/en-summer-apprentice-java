@@ -2,11 +2,12 @@ package com.example.system.domain;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @jakarta.persistence.Entity
 @Table(name = "Orders")
-public class Order extends Entity<Long>{
+public class Order extends Entity<Long> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
