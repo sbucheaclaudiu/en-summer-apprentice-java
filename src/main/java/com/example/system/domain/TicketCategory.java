@@ -1,6 +1,7 @@
 package com.example.system.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -16,7 +17,7 @@ public class TicketCategory implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "eventID")
-    @JsonIgnore
+    @JsonBackReference
     private Event event;
 
     @Column(name = "description")

@@ -1,5 +1,6 @@
 package com.example.system.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -35,6 +36,7 @@ public class Event implements Serializable {
     private String description;
 
     @OneToMany(mappedBy = "event")
+    @JsonManagedReference
     private List<TicketCategory> ticketCategoryList;
 
     public Event() {}
