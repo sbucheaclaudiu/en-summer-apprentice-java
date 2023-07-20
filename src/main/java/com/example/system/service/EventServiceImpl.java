@@ -13,11 +13,11 @@ public class EventServiceImpl implements EventService{
 
     @Override
     public Iterable<Event> getAllEvents() {
-        return (List<Event>) eventRepo.findAll();
+        return eventRepo.findAll();
     }
 
     @Override
-    public Event getEventByVenueIDAndEventType() {
-        return eventRepo.getEventByVenueIDAndEventType();
+    public Event getEventByVenueIDAndEventType(Long id, String eventTypeName) {
+        return eventRepo.findEventsByVenue_VenueIDAndEventType_EventTypeName(id, eventTypeName);
     }
 }

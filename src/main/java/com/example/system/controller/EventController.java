@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
+@RequestMapping("/system")
 public class EventController {
 
     private EventService eventService;
@@ -16,14 +18,14 @@ public class EventController {
         System.out.println("Creating Event Controller");
     }
 
-    @GetMapping("/system/events")
-    public Iterable<Event> getEvents(){
-        return eventService.getAllEvents();
+    @GetMapping("/events")
+    public Event getEventByVenueIDAndEevntType(@RequestParam Long venueID, @RequestParam String eventType){
+        return eventService.getEventByVenueIDAndEventType(venueID, eventType);
     }
 
-    @GetMapping("/system/eventByVenueIDAndEventType")
-    public Event getEventByVenueIDAndEevntType(){
-        return eventService.getEventByVenueIDAndEventType();
+    @GetMapping("/eventsAll")
+    public Iterable<Event> getEvents(){
+        return eventService.getAllEvents();
     }
 
 }

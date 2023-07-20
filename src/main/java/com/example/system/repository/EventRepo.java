@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EventRepo extends CrudRepository<Event, Long> {
-    @Query("SELECT E FROM Event E \n" +
-            "INNER JOIN Venue V ON E.venue.venueID = V.venueID \n" +
-            "INNER JOIN EventType ET ON ET.eventTypeID = E.eventType.eventTypeID\n" +
-            "WHERE V.venueID = 1 AND ET.eventTypeName = 'Sport'")
-    Event getEventByVenueIDAndEventType();
+
+    Event findEventsByVenue_VenueIDAndEventType_EventTypeName(Long id, String eventTypeName);
 }

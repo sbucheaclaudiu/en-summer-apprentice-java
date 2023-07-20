@@ -1,6 +1,7 @@
 package com.example.system.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ public class TicketCategory implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "eventID")
+    @JsonIgnore
     private Event event;
 
     @Column(name = "description")

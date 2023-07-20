@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Event")
@@ -33,16 +34,10 @@ public class Event implements Serializable {
     @Column(name = "description")
     private String description;
 
-    public Event() {}
+    @OneToMany(mappedBy = "event")
+    private List<TicketCategory> ticketCategoryList;
 
-    public Event(EventType eventType, Venue venue, String eventName, LocalDateTime startDate, LocalDateTime endDate, String description) {
-        this.eventType = eventType;
-        this.venue = venue;
-        this.eventName = eventName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.description = description;
-    }
+    public Event() {}
 
     public Long getEventID() {
         return eventID;
@@ -100,6 +95,14 @@ public class Event implements Serializable {
         this.description = description;
     }
 
+    public List<TicketCategory> getTicketCategoryList() {
+        return ticketCategoryList;
+    }
+
+    public void setTicketCategoryList(List<TicketCategory> ticketCategoryList) {
+        this.ticketCategoryList = ticketCategoryList;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -110,6 +113,7 @@ public class Event implements Serializable {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", description='" + description + '\'' +
+                ", ticketCategoryList=" + ticketCategoryList +
                 '}';
     }
 }
