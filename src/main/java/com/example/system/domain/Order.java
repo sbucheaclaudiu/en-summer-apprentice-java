@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @jakarta.persistence.Entity
 @Table(name = "Orders")
-public class Order extends Entity<Long> implements Serializable {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +32,7 @@ public class Order extends Entity<Long> implements Serializable {
 
     public Order() {}
 
-    public Order(Long orderID, Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt, int numberOfTickets, double totalPrice) {
-        super(orderID);
-        this.orderID = orderID;
+    public Order(Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt, int numberOfTickets, double totalPrice) {
         this.customer = customer;
         this.ticketCategory = ticketCategory;
         this.orderedAt = orderedAt;

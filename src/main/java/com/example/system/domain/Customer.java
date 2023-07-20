@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.io.Serializable;
 
-@jakarta.persistence.Entity
+@Entity
 @Table(name = "Customer")
-public class Customer extends Entity<Long> implements Serializable {
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long customerID;
@@ -21,9 +21,7 @@ public class Customer extends Entity<Long> implements Serializable {
     public Customer() {
     }
 
-    public Customer(long customerID, String customerName, String email) {
-        super(customerID);
-        this.customerID = customerID;
+    public Customer(String customerName, String email) {
         this.customerName = customerName;
         this.email = email;
     }
@@ -40,8 +38,8 @@ public class Customer extends Entity<Long> implements Serializable {
         return customerName;
     }
 
-    public void setCustomerName(String cusomerName) {
-        this.customerName = cusomerName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getEmail() {

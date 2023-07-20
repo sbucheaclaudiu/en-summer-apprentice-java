@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @jakarta.persistence.Entity
 @Table(name = "EventType")
-public class EventType extends Entity<Long> implements Serializable {
+public class EventType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long eventTypeID;
@@ -17,9 +17,7 @@ public class EventType extends Entity<Long> implements Serializable {
     public EventType() {
     }
 
-    public EventType(long eventTypeID, String eventTypeName) {
-        super(eventTypeID);
-        this.eventTypeID = eventTypeID;
+    public EventType(String eventTypeName) {
         this.eventTypeName = eventTypeName;
     }
 

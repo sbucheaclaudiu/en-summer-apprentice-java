@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-@jakarta.persistence.Entity
+@Entity
 @Table(name = "TicketCategory")
-public class TicketCategory extends Entity<Long> implements Serializable {
+public class TicketCategory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +26,7 @@ public class TicketCategory extends Entity<Long> implements Serializable {
     public TicketCategory() {
     }
 
-    public TicketCategory(Long ticketCategoryID, Event event, String description, double price) {
-        super(ticketCategoryID);
-        this.ticketCategoryID = ticketCategoryID;
+    public TicketCategory(Event event, String description, double price) {
         this.event = event;
         this.description = description;
         this.price = price;

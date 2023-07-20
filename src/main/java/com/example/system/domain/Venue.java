@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-@jakarta.persistence.Entity
-@Table(name = "Vanue")
-public class Venue extends Entity<Long> implements Serializable {
+@Entity
+@Table(name = "Venue")
+public class Venue implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +24,7 @@ public class Venue extends Entity<Long> implements Serializable {
     public Venue() {
     }
 
-    public Venue(long venueID, String location, String type, int capacity) {
-        super(venueID);
-        this.venueID = venueID;
+    public Venue(String location, String type, int capacity) {
         this.location = location;
         this.type = type;
         this.capacity = capacity;

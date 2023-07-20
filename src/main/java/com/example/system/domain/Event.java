@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@jakarta.persistence.Entity
+@Entity
 @Table(name = "Event")
-public class Event extends Entity<Long> implements Serializable {
+public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +35,7 @@ public class Event extends Entity<Long> implements Serializable {
 
     public Event() {}
 
-    public Event(Long eventID, EventType eventType, Venue venue, String eventName, LocalDateTime startDate, LocalDateTime endDate, String description) {
-        super(eventID);
-        this.eventID = eventID;
+    public Event(EventType eventType, Venue venue, String eventName, LocalDateTime startDate, LocalDateTime endDate, String description) {
         this.eventType = eventType;
         this.venue = venue;
         this.eventName = eventName;
