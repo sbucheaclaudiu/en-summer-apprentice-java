@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface EventService{
     Iterable<Event> getAllEvents();
+
+    Event getEventByVenueIDAndEventType();
 }

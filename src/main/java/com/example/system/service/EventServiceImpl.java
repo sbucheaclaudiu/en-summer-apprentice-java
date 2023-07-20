@@ -15,4 +15,9 @@ public class EventServiceImpl implements EventService{
     public Iterable<Event> getAllEvents() {
         return (List<Event>) eventRepo.findAll();
     }
+
+    @Override
+    public Event getEventByVenueIDAndEventType() {
+        return eventRepo.getEventByVenueIDAndEventType();
+    }
 }
