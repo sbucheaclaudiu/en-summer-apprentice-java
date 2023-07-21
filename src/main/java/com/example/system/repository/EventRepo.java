@@ -7,8 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface EventRepo extends CrudRepository<Event, Long> {
 
-    Event findEventsByVenue_VenueIDAndEventType_EventTypeName(Long id, String eventTypeName);
+    Iterable<Event> findEventsByVenue_VenueIDAndEventType_EventTypeName(Long id, String eventTypeName);
 }

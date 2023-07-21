@@ -4,7 +4,6 @@ import com.example.system.domain.Customer;
 import com.example.system.domain.Order;
 import com.example.system.domain.OrderBodyPost;
 import com.example.system.domain.TicketCategory;
-import com.example.system.dto.DTOUtils;
 import com.example.system.dto.OrderDTO;
 import com.example.system.service.CustomerService;
 import com.example.system.service.OrderService;
@@ -46,8 +45,8 @@ public class OrderController {
     @GetMapping("/orders")
     public Iterable<OrderDTO> getOrdersByCustomer(){
 
-        Iterable<Order> orderList = orderService.getAllOrdersByCustomer(this.currentCustomerID);
-        return DTOUtils.getDTO(orderList);
+        Iterable<OrderDTO> orderList = orderService.getAllOrdersByCustomer(this.currentCustomerID);
+        return orderList;
     }
 
 
@@ -60,7 +59,7 @@ public class OrderController {
 
         Order newOrder = new Order(customer, ticketCategory, dateTime, order.getNumberOfTickets(), order.getNumberOfTickets() * ticketCategory.getPrice());
 
-        OrderDTO orderDTO = DTOUtils.getDTO(orderService.save(newOrder));
+        OrderDTO orderDTO = orderService.save(newOrder);
         Map<String, OrderDTO> singletonMap = Collections.singletonMap("order", orderDTO);
         return singletonMap;
     }
