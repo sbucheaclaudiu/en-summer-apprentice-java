@@ -12,6 +12,8 @@ import com.example.system.service.TicketCategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -50,7 +52,7 @@ public class OrderController {
 
 
     @PostMapping("/orders")
-    public OrderDTO saveOrder(@RequestBody OrderBodyPost order) {
+    public Map<String, OrderDTO> saveOrder(@RequestBody OrderBodyPost order) {
         LocalDateTime dateTime = LocalDateTime.now();
 
         TicketCategory ticketCategory = ticketCategoryService.findById(order.getTicketCategoryID());
@@ -58,6 +60,8 @@ public class OrderController {
 
         Order newOrder = new Order(customer, ticketCategory, dateTime, order.getNumberOfTickets(), order.getNumberOfTickets() * ticketCategory.getPrice());
 
-        return DTOUtils.getDTO(orderService.save(newOrder));
+        OrderDTO orderDTO = DTOUtils.getDTO(orderService.save(newOrder));
+        Map<String, OrderDTO> singletonMap = Collections.singletonMap("order", orderDTO);
+        return singletonMap;
     }
 }
