@@ -1,6 +1,8 @@
 package com.example.system.controller;
 
 import com.example.system.domain.Event;
+import com.example.system.dto.DTOUtils;
+import com.example.system.dto.EventDTO;
 import com.example.system.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +21,8 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public Event getEventByVenueIDAndEevntType(@RequestParam Long venueID, @RequestParam String eventType){
-        return eventService.getEventByVenueIDAndEventType(venueID, eventType);
+    public EventDTO getEventByVenueIDAndEevntType(@RequestParam Long venueID, @RequestParam String eventType){
+        return DTOUtils.getDTO(eventService.getEventByVenueIDAndEventType(venueID, eventType));
     }
 
 }
