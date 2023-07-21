@@ -13,7 +13,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private CustomerRepo customerRepo;
     @Override
-    public Iterable<Customer> getAllCustomers() {
-        return customerRepo.findAll();
+    public Customer findById(Long id) {
+        return customerRepo.findById(id).get();
     }
 }

@@ -2,13 +2,13 @@ package com.example.system.domain;
 
 import java.io.Serializable;
 
-public class OrderDTO implements Serializable {
+public class OrderBodyPost implements Serializable {
 
     private Long eventID;
     private Long ticketCategoryID;
     private int numberOfTickets;
 
-    public OrderDTO(Long eventID, Long ticketCategoryID, int numberOfTickets) {
+    public OrderBodyPost(Long eventID, Long ticketCategoryID, int numberOfTickets) {
         this.eventID = eventID;
         this.ticketCategoryID = ticketCategoryID;
         this.numberOfTickets = numberOfTickets;

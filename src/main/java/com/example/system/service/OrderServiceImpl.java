@@ -14,23 +14,13 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderRepo orderRepo;
 
-    private Customer currentCustomer;
-
-    public Customer getCurrentCustomer() {
-        return currentCustomer;
-    }
-
-    public void setCurrentCustomer(Customer currentCustomer) {
-        this.currentCustomer = currentCustomer;
+    @Override
+    public Iterable<Order> getAllOrdersByCustomer(Long customerID) {
+        return orderRepo.getOrderByCustomer_CustomerID(customerID);
     }
 
     @Override
-    public Iterable<Order> getAllOrdersByCustomer() {
-        return orderRepo.getOrderByCustomer_CustomerID(1L);
-    }
-
-    @Override
-    public Order insert(Order order) {
+    public Order save(Order order) {
         return orderRepo.save(order);
     }
 

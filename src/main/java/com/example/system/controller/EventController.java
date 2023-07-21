@@ -23,9 +23,4 @@ public class EventController {
         return eventService.getEventByVenueIDAndEventType(venueID, eventType);
     }
 
-    @GetMapping("/eventsAll")
-    public Iterable<Event> getEvents(){
-        return eventService.getAllEvents();
-    }
-
 }

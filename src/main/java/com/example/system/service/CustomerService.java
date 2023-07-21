@@ -4,5 +4,5 @@ import com.example.system.domain.Customer;
 import com.example.system.domain.Event;
 
 public interface CustomerService {
-    Iterable<Customer> getAllCustomers();
+    Customer findById(Long id);
 }
