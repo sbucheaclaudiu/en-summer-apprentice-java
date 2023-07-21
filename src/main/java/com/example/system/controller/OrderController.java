@@ -1,15 +1,11 @@
 package com.example.system.controller;
 
-import com.example.system.domain.Event;
 import com.example.system.domain.Order;
-import com.example.system.service.EventService;
+import com.example.system.domain.OrderDTO;
 import com.example.system.service.OrderService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import com.example.system.service.Service;
+import com.example.system.service.ServiceImpl;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
@@ -17,14 +13,22 @@ import java.util.List;
 public class OrderController {
     private OrderService orderService;
 
-    public OrderController(OrderService orderService) {
+    private Service service;
+
+    public OrderController(OrderService orderService, Service service) {
         this.orderService = orderService;
+        this.service = service;
         System.out.println("Creating Order Controller");
     }
 
     @GetMapping("/orders")
-    public Iterable<Order> getEvents(){
-        return orderService.getAllOrders();
+    public Iterable<Order> getOrdersByCustomer(){
+        return orderService.getAllOrdersByCustomer();
+    }
+
+    @PostMapping("/orders")
+    public Order insert(@RequestBody OrderDTO order){
+        return service.saveOrder(order);
     }
 
 }

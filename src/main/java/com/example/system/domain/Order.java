@@ -1,9 +1,14 @@
 package com.example.system.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @jakarta.persistence.Entity
 @Table(name = "Orders")
@@ -22,6 +27,7 @@ public class Order implements Serializable {
     private TicketCategory ticketCategory;
 
     @Column(name = "orderedAt")
+    @JsonDeserialize(as = LocalDateTime.class)
     private LocalDateTime orderedAt;
 
     @Column(name = "numberOfTickets")
