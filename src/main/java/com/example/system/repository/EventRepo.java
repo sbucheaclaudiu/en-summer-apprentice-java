@@ -12,5 +12,9 @@ import java.util.List;
 @Repository
 public interface EventRepo extends CrudRepository<Event, Long> {
 
-    Iterable<Event> findEventsByVenue_VenueIDAndEventType_EventTypeName(Long id, String eventTypeName);
+    Iterable<Event> findEventsByVenue_VenueIDAndEventType_EventTypeName(Long venueID, String eventTypeName);
+
+    Iterable<Event> findEventsByVenue_VenueID(Long venueID);
+
+    Iterable<Event> findEventsByEventType_EventTypeName(String eventTypeName);
 }

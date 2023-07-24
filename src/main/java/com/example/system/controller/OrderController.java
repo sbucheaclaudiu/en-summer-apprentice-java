@@ -5,9 +5,7 @@ import com.example.system.domain.Order;
 import com.example.system.domain.OrderBodyPost;
 import com.example.system.domain.TicketCategory;
 import com.example.system.dto.OrderDTO;
-import com.example.system.service.CustomerService;
 import com.example.system.service.OrderService;
-import com.example.system.service.TicketCategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -20,25 +18,11 @@ import java.util.Map;
 public class OrderController {
     private OrderService orderService;
 
-    private TicketCategoryService ticketCategoryService;
+    private static Long currentCustomerID = 1L;
 
-    private CustomerService customerService;
 
-    private Long currentCustomerID;
-
-    public Long getCurrentCustomer() {
-        return currentCustomerID;
-    }
-
-    public void setCurrentCustomer(Long currentCustomerID) {
-        this.currentCustomerID = currentCustomerID;
-    }
-
-    public OrderController(OrderService orderService, TicketCategoryService ticketCategoryService, CustomerService customerService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.ticketCategoryService = ticketCategoryService;
-        this.customerService = customerService;
-        this.currentCustomerID = 1L;
         System.out.println("Creating Order Controller");
     }
 
@@ -52,14 +36,7 @@ public class OrderController {
 
     @PostMapping("/orders")
     public Map<String, OrderDTO> saveOrder(@RequestBody OrderBodyPost order) {
-        LocalDateTime dateTime = LocalDateTime.now();
-
-        TicketCategory ticketCategory = ticketCategoryService.findById(order.getTicketCategoryID());
-        Customer customer = customerService.findById(this.currentCustomerID);
-
-        Order newOrder = new Order(customer, ticketCategory, dateTime, order.getNumberOfTickets(), order.getNumberOfTickets() * ticketCategory.getPrice());
-
-        OrderDTO orderDTO = orderService.save(newOrder);
+        OrderDTO orderDTO = orderService.save(order, this.currentCustomerID);
         Map<String, OrderDTO> singletonMap = Collections.singletonMap("order", orderDTO);
         return singletonMap;
     }

@@ -17,7 +17,7 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public Iterable<EventDTO> getEventByVenueIDAndEevntType(@RequestParam Long venueID, @RequestParam String eventType){
+    public Iterable<EventDTO> getEventByVenueIDAndEevntType(@RequestParam(name = "venueId", required = false) Long venueID, @RequestParam(name = "eventType", required = false) String eventType){
         return eventService.getEventByVenueIDAndEventType(venueID, eventType);
     }
 

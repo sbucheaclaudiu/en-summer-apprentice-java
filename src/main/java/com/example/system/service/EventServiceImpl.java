@@ -14,8 +14,20 @@ public class EventServiceImpl implements EventService{
     private EventRepo eventRepo;
 
     @Override
-    public Iterable<EventDTO> getEventByVenueIDAndEventType(Long id, String eventTypeName) {
-        return getDTOIterable(eventRepo.findEventsByVenue_VenueIDAndEventType_EventTypeName(id, eventTypeName));
+    public Iterable<EventDTO> getEventByVenueIDAndEventType(Long venueId, String eventTypeName) {
+        if (eventTypeName == null && venueId == null) {
+            return getDTOIterable(eventRepo.findAll());
+        }
+
+        if (eventTypeName == null) {
+            return getDTOIterable(eventRepo.findEventsByVenue_VenueID(venueId));
+        }
+
+        if (venueId == null) {
+            return getDTOIterable(eventRepo.findEventsByEventType_EventTypeName(eventTypeName));
+        }
+
+        return getDTOIterable(eventRepo.findEventsByVenue_VenueIDAndEventType_EventTypeName(venueId, eventTypeName));
     }
 
     private static EventDTO getDTO(Event event){
